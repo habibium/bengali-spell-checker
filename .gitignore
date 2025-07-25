@@ -47,6 +47,14 @@ web_modules/
 # TypeScript cache
 *.tsbuildinfo
 
+# Build directories
+dist/
+build/
+.next/
+
+# Monorepo
+.pnpm-debug.log*
+
 # Optional npm cache directory
 .npm
 
