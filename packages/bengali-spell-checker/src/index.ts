@@ -1,7 +1,7 @@
-import Typo from "typo-js";
-import { readFileSync } from "fs";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+import Hunspell from "hunspell-spellchecker";
+import fs from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // Get the current file directory
 const __filename = fileURLToPath(import.meta.url);
@@ -15,33 +15,25 @@ const dictionaryPath = join(
 const affPath = join(dictionaryPath, "bn_BD.aff");
 const dicPath = join(dictionaryPath, "bn_BD.dic");
 
+console.time("Dictionary");
+
 // Load dictionary files
-const affData = readFileSync(affPath, "utf-8");
-const wordData = readFileSync(dicPath, "utf-8");
+const affData = await fs.readFile(affPath);
+const wordData = await fs.readFile(dicPath);
 
 // Create the dictionary instance
-const dictionary = new Typo("bn_BD", affData, wordData);
+const dictionary = new Hunspell();
+const DICT = dictionary.parse({
+  aff: affData,
+  dic: wordData,
+});
 
-// Export spell checker functions
-export function check(word: string): boolean {
-  return dictionary.check(word);
-}
+dictionary.use(DICT);
 
-export function suggest(word: string): string[] {
-  return dictionary.suggest(word);
-}
+console.timeEnd("Dictionary");
+console.log({
+  __filename,
+  __dirname,
+});
 
-export function isLoaded(): boolean {
-  return dictionary.loaded;
-}
-
-// Export the dictionary instance for advanced usage
-export { dictionary };
-
-// Default export with all functions
-export default {
-  check,
-  suggest,
-  isLoaded,
-  dictionary,
-};
+export default dictionary;

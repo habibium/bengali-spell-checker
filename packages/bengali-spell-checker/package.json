@@ -27,9 +27,9 @@
   "license": "GPL-3.0-only",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
-    "typo-js": "^1.2.5"
+    "hunspell-spellchecker": "^1.0.2"
   },
   "devDependencies": {
-    "@types/typo-js": "^1.2.2"
+    "@types/hunspell-spellchecker": "^1.0.2"
   }
 }
