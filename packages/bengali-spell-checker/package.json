@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Bengali/Bangla spell checker following the Hunspell dictionary format",
   "main": "dist/index.js",
+  "type": "module",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc && rollup -c",
@@ -27,5 +28,8 @@
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
     "typo-js": "^1.2.5"
+  },
+  "devDependencies": {
+    "@types/typo-js": "^1.2.2"
   }
 }
