@@ -1,0 +1,31 @@
+{
+  "name": "bengali-spell-checker",
+  "version": "0.1.0",
+  "description": "Bengali/Bangla spell checker following the Hunspell dictionary format",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && rollup -c",
+    "dev": "tsx watch src/index.ts"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "keywords": [
+    "bengali",
+    "bangla",
+    "spell-checker",
+    "spellcheck",
+    "dictionary"
+  ],
+  "author": "habibium",
+  "license": "GPL-3.0-only",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "typo-js": "^1.2.5"
+  }
+}
