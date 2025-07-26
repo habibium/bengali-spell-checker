@@ -2,7 +2,13 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -15,7 +21,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useSpellChecker } from "@/hooks/useSpellChecker";
-import { AlertCircle, CheckCircle2, FileText, Lightbulb } from "lucide-react";
+import {
+  AlertCircle,
+  CheckCircle2,
+  FileText,
+  Info,
+  Lightbulb,
+} from "lucide-react";
 import React, { useCallback, useMemo, useState } from "react";
 
 interface HighlightedTextProps {
@@ -243,7 +255,7 @@ export default function SpellChecker() {
       <div className="min-h-screen flex items-center justify-center text-2xl">
         <div className="flex items-center justify-center space-x-2">
           <div className="animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
-          <span>Loading Bengali dictionary...</span>
+          <span>Loading Bengali dictionary</span>
         </div>
       </div>
     );
@@ -266,7 +278,7 @@ export default function SpellChecker() {
 
   return (
     <div className="min-h-screen p-4">
-      <div>
+      <div className="space-y-6">
         {/* Input Section */}
         <Card>
           <CardContent>
@@ -274,7 +286,7 @@ export default function SpellChecker() {
               placeholder="Type your Bengali text here... / এখানে আপনার বাংলা টেক্সট টাইপ করুন..."
               value={text}
               onChange={(e) => setText(e.target.value)}
-              className="min-h-[300px] text-lg font-bengali"
+              className="min-h-[300px] text-lg font-bengali field-sizing-fixed"
               dir="ltr"
             />
           </CardContent>
@@ -284,14 +296,20 @@ export default function SpellChecker() {
         <Card>
           <CardHeader>
             <CardTitle>Spell Check Result</CardTitle>
-            <div className="flex gap-2 text-sm">
-              <Badge variant="outline" className="text-green-600">
-                <CheckCircle2 className="h-3 w-3 mr-1" />
-                Correct
+            <CardDescription>
+              Click the incorrect words for suggestions
+            </CardDescription>
+            <div className="flex gap-2 mt-2">
+              <Badge variant="outline">
+                <Info />
+                Words {wordCount}
               </Badge>
-              <Badge variant="outline" className="text-red-600">
-                <AlertCircle className="h-3 w-3 mr-1" />
-                Misspelled (click for suggestions)
+              <Badge
+                variant="destructive"
+                className="text-destructive bg-destructive/10"
+              >
+                <AlertCircle />
+                Errors {errorCount}
               </Badge>
             </div>
           </CardHeader>
@@ -312,22 +330,6 @@ export default function SpellChecker() {
           </CardContent>
         </Card>
       </div>
-
-      {/* Statistics */}
-      <Card>
-        <CardContent className="">
-          <div className="flex items-center space-x-2">
-            <div>
-              <p className="text-2xl font-bold">{wordCount}</p>
-              <p className="text-sm text-muted-foreground">Words</p>
-            </div>
-            <div>
-              <p className="text-2xl font-bold text-red-600">{errorCount}</p>
-              <p className="text-sm text-muted-foreground">Errors</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
 
       {/* Suggestions Dialog */}
       <SuggestionDialog
