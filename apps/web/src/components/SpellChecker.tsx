@@ -21,13 +21,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useSpellChecker } from "@/hooks/useSpellChecker";
-import {
-  AlertCircle,
-  CheckCircle2,
-  FileText,
-  Info,
-  Lightbulb,
-} from "lucide-react";
+import { AlertCircle, Info, Lightbulb } from "lucide-react";
 import React, { useCallback, useMemo, useState } from "react";
 
 interface HighlightedTextProps {

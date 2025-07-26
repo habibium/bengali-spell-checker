@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
 import nspell from "nspell";
+import { useCallback, useEffect, useState } from "react";
 
 interface SpellCheckResult {
   word: string;
